@@ -14,6 +14,11 @@ body {
     width: 400px;
 }
 
+.answerCard:hover {
+    cursor: pointer;
+    background-color: #fefcad;
+}
+
 .question-footer {
     display: flex;
     justify-content: space-between;

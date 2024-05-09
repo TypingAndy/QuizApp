@@ -19,7 +19,7 @@
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="init()">
 
 <!-- As a heading -->
 <nav class="navbar bg-body-tertiary">
@@ -27,6 +27,47 @@
       <span class="navbar-brand mb-0 h1">QuizApp</span>
     </div>
   </nav>
+
+  <div class="container">
+  <div class="card quiz-card">
+    <img src="img/quizbackground.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title" id="card-title">Fragen</h5>
+
+      <div class="card mb-2">
+        <div class="card-body" id="answerOne">
+          Antwort 1
+        </div>
+      </div>
+
+      <div class="card mb-2">
+        <div class="card-body" id="answerTwo">
+          Antwort 2
+        </div>
+      </div>
+
+      <div class="card mb-2">
+        <div class="card-body" id="answerThree">
+          Antwort 3
+        </div>
+      </div>
+
+      <div class="card mb-2">
+        <div class="card-body" id="answerFour">
+          Antwort 4
+        </div>
+      </div>
+
+      <div class="question-footer">
+           <span><b>1</b> von <b>5</b> Fragen</span>
+
+           <button type="button" class="btn btn-primary">Nächste Frage</button>
+    
+        </div>
+
+    </div>
+  </div>
+</div>
 
 
 </body>

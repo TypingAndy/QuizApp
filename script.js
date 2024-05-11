@@ -46,61 +46,95 @@ let questions = [
   },
 ];
 
-let currentQuestion = 4;
+let currentQuestion = 0;
 
 function init() {
   document.getElementById("questionLength").innerHTML = questions.length;
-  numberCurrentQuestion ();
+  numberCurrentQuestion();
   showCurrentQuestion();
   showCurrentAnswers();
 }
 
-
-function numberCurrentQuestion () {
-    document.getElementById('numberCurrentQuestion').innerHTML = currentQuestion +1;
+function numberCurrentQuestion() {
+  document.getElementById("numberCurrentQuestion").innerHTML =
+    currentQuestion + 1;
 }
 
 function showCurrentQuestion() {
-
-    let askedQuestions = questions[currentQuestion];
-    document.getElementById('card-title').innerHTML = askedQuestions['question'];
-
-  }
-
+  let askedQuestions = questions[currentQuestion];
+  document.getElementById("card-title").innerHTML = askedQuestions["question"];
+}
 
 function showCurrentAnswers() {
-    answerOne = document.getElementById("answer_1");
-    answerTwo = document.getElementById("answer_2");
-    answerThree = document.getElementById("answer_3");
-    answerFour = document.getElementById("answer_4");
+  showAnswerOne();
+  showAnswerTwo();
+  showAnswerThree();
+  showAnswerFour();
+}
 
-      answerOne.innerHTML = `
-         <div>${questions[currentQuestion].answer_1}</div>
-         `;
+function showAnswerOne() {
+  answerOne = document.getElementById("answer_1");
+  answerOne.innerHTML = `
+  <div>${questions[currentQuestion].answer_1}</div>
+  `;
+}
 
-      answerTwo.innerHTML = `         
+function showAnswerTwo() {
+  answerTwo = document.getElementById("answer_2");
+  answerTwo.innerHTML = `         
          <div>${questions[currentQuestion].answer_2}</div>
          `;
+}
 
-      answerThree.innerHTML = `
+function showAnswerThree() {
+  answerThree = document.getElementById("answer_3");
+  answerThree.innerHTML = `
         <div>${questions[currentQuestion].answer_3}</div>
         `;
+}
 
-      answerFour.innerHTML = `
+function showAnswerFour() {
+  answerFour = document.getElementById("answer_4");
+  answerFour.innerHTML = `
         <div>${questions[currentQuestion].answer_4}</div>
         `;
 }
 
 function answer(selection) {
-   
-   
+  let rightAnswer = questions[currentQuestion].right_answer;
 
-    let selectedQuestionNumber = selection.slice(-1);
+  let selectedQuestionNumber = selection.slice(-1);
 
-   if (selectedQuestionNumber == questions[currentQuestion].right_answer) {
-    document.getElementById('result').innerHTML = `<div>right</div>`;
-    document.getElementById
-   }else{
-    document.getElementById('result').innerHTML = `<div>wrong</div>`;
-   }
+  let idOfRightAnswer = `answer_${rightAnswer}`;
+
+  if (selectedQuestionNumber == questions[currentQuestion].right_answer) {
+    document.getElementById("result").innerHTML = `<div>right</div>`;
+    document.getElementById(selection).parentNode.classList.add("bg-success");
+  } else {
+    document.getElementById("result").innerHTML = `<div>wrong</div>`;
+    document.getElementById(selection).parentNode.classList.add("bg-danger");
+    document
+      .getElementById(idOfRightAnswer)
+      .parentNode.classList.add("bg-success");
+  }
+
+  document.getElementById("next-button").disabled = false;
+}
+
+function nextQuestion() {
+  currentQuestion++;
+  if (currentQuestion >= questions.length) {
+    currentQuestion = 0;
+  }
+  deleteQuestionColor();
+  init();
+}
+
+function deleteQuestionColor() {
+  document.getElementById("next-button").disabled = true;
+  for (let i = 1; i <= 4; i++) {
+    document
+      .getElementById(`card-mb${i}`)
+      .classList.remove("bg-success", "bg-danger");
+  }
 }

@@ -27,3 +27,7 @@ body {
 .btn-primary {
     background-color: #92977e;
 }
+
+.bg-success, .bg-danger {
+    color: white;
+}
